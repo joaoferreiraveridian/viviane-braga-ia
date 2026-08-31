@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Tokens de design — template base
+ * =================================
+ * Todo valor de cor do app deve vir de uma destas variáveis, nunca de um
+ * hex literal dentro de um componente. Trocar a marca de um app concreto
+ * gerado a partir deste template é trocar SÓ os valores aqui dentro — a
+ * paleta abaixo é neutra (cinza) com um único acento configurável, de
+ * propósito, para não carregar a identidade de nenhum produto específico.
+ *
+ * Formato: HSL "H S% L%" (sem função hsl() em volta), consumido como
+ * hsl(var(--token)) — permite hsl(var(--token) / 0.5) para opacidade.
+ */
+
+@layer base {
+  :root {
+    /* ---- Tipografia ---- */
+    /* Fontes de sistema por padrão (ver comentário em index.html). Troque
+       por uma família própria do produto sem tocar em mais nada. */
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: ui-serif, Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+    /* ---- Superfícies ---- */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 14.5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 14.5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 14.5%;
+
+    /* ---- Ações ---- */
+    --primary: 234 56% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 14.5%;
+
+    /* ---- Acento (configurável) ---- */
+    --accent: 217 91% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 42%;
+
+    /* ---- Estados semânticos ---- */
+    --success: 142 40% 32%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 32 60% 40%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 6 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* ---- Estrutura ---- */
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 234 56% 60%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 94%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 94%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 94%;
+
+    --primary: 234 60% 68%;
+    --primary-foreground: 234 40% 12%;
+
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 94%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 8%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 62%;
+
+    --success: 142 30% 55%;
+    --success-foreground: 0 0% 8%;
+
+    --warning: 32 50% 58%;
+    --warning-foreground: 0 0% 8%;
+
+    --destructive: 6 55% 58%;
+    --destructive-foreground: 0 0% 8%;
+
+    --border: 0 0% 24%;
+    --input: 0 0% 24%;
+    --ring: 234 60% 68%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Itálico desligado globalmente — decisão de design fixa deste template. */
+  * {
+    font-synthesis: none;
+    font-style: normal;
+  }
+
+  em,
+  i,
+  cite,
+  address,
+  dfn,
+  var {
+    font-style: normal;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  /* Números sempre em fonte não-serifada com algarismos tabulares — nunca
+     na fonte de display. Toda vez que um número aparecer em UI (tabela,
+     KPI, contador), aplique esta classe. */
+  .tabular {
+    font-family: var(--font-sans) !important;
+    font-variant-numeric: tabular-nums;
+    font-style: normal;
+  }
+
+  /* Scrollbar discreta (WebKit + Firefox). */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
